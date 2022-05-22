@@ -1,0 +1,33 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "BlogAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <form asp-controller="Blog" asp-action="BlogAdd"  method="post">
+        <label>Blog Title</label>
+        <input class="form-control" name="BlogTitle"/>
+        <span asp-validation-for="BlogTitle" class="text-danger"></span>
+        <label>Blog Content</label>
+        <input class="form-control" name="BlogContent" />
+        <span asp-validation-for="BlogContent" class="text-danger"></span>
+        <label>Blog Thumbnail Image</label>
+        <input class="form-control" name="BlogThumbnailImage"/>
+        <span asp-validation-for="BlogThumbnailImage" class="text-danger"></span>
+        <label>Blog Image</label>
+        <input class="form-control" name="BlogImage"/>
+        <span asp-validation-for="BlogImage" class="text-danger"></span>
+        <label>Kategori</label>
+        <select class="form-control" asp-for="CategoryID" asp-items="ViewBag.SelectedCategories" ></select>
+        <span asp-validation-for="CategoryID" class="text-danger"></span>
+        <label>Yazar</label>
+        <select class="form-control" asp-for="WriterID" asp-items="ViewBag.SelectedWriters"></select>
+        <span asp-validation-for="WriterID" class="text-danger"></span>
+        <br />
+        <button type="submit" class="btn btn-gradient-primary">Kaydet</button>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,60 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "BlogDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="inner">
+    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+
+    <div class="image main">
+        <img src="~/webSite/@Model.BlogImage" class="img-fluid" alt="" />
+    </div>
+    <p>
+    @Model.BlogContent
+    </p>
+</div>
+
+
+<div class="inner">
+    <section>
+        <h2>Yorumlar </h2>
+        <form method="post" action="#">
+            <div class="fields">
+                <div class="field ">
+                    @await Component.InvokeAsync("Comment")
+                </div>
+
+            </div>
+        </form>
+    </section>
+</div>
+
+
+<div class="inner">
+    <section>
+        <h2>Yorum Yap</h2>
+        <form method="post" action="#">
+            <div class="fields">
+                <div class="field half">
+                    <input type="text" name="name" id="name" placeholder="Başlık" />
+                </div>
+
+                <div class="field">
+                    <textarea name="message" id="message" rows="3" placeholder="Notes"></textarea>
+                </div>
+
+                <div class="field text-right">
+                    <label>&nbsp;</label>
+
+                    <ul class="actions">
+                        <li><input type="submit" value="Yorumu Kaydet" class="primary" /></li>
+                    </ul>
+
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+
+

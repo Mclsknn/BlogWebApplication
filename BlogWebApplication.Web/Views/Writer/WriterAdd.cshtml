@@ -1,0 +1,36 @@
+﻿@model Writer
+@{
+    ViewData["Title"] = "WriterAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <form asp-controller="Writer" asp-action="WriterAdd" method="post">
+            <label>Writer Name</label>
+            <input class="form-control" name="WriterName" />
+            <span asp-validation-for="WriterName" class="text-danger"></span>
+            <label>WriterAbout</label>
+            <input class="form-control" name="WriterAbout" />
+            <span asp-validation-for="WriterAbout" class="text-danger"></span>
+            <label>WriterImage</label>
+            <input class="form-control" name="WriterImage" />
+            <span asp-validation-for="WriterImage" class="text-danger"></span>
+            <label>WriterMail</label>
+            <input class="form-control" name="WriterMail" />
+            <label>WriterInstagram</label>
+            <input class="form-control" name="WriterInstagram" />
+            <span asp-validation-for="WriterInstagram" class="text-danger"></span>
+            <label>WriterLinkedin</label>
+            <input class="form-control" name="WriterLinkedin" />
+            <span asp-validation-for="WriterLinkedin" class="text-danger"></span>
+            <label>WriterTwitter</label>
+            <input class="form-control" name="WriterTwitter" />
+            <span asp-validation-for="WriterTwitter" class="text-danger"></span>
+            <br />
+            <button type="submit" class="btn btn-gradient-primary">Kaydet</button>
+        </form>
+    </div>
+</div>
+

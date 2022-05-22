@@ -1,0 +1,46 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="inner mt-5">
+        <div class="row mt-5">
+
+            <div class="col-md-3"></div>
+            <div class="col-md-6 mt-4">
+                <form method="post" action="#">
+                    <div class="fields">
+                        <div class="field half">
+                            <input type="text" name="email" id="email" placeholder="Kullanıcı Adı" />
+                        </div>
+                        <div class="field half">
+                            <input type="text" name="email" id="email" placeholder="İsim Soyisim" />
+                        </div>
+
+                        <div class="field ">
+                            <input type="text" name="email" id="email" placeholder="E-Mail" />
+                        </div>
+
+                        <div class="field half">
+                            <input type="password" name="subject" id="subject" placeholder="Şifre" />
+                        </div>
+                        <div class="field half">
+                            <input type="password" name="subject" id="subject" placeholder="Şifre Tekrarı" />
+                        </div>
+
+                        <div class="field ">
+
+                            <input type="submit" value="Kayıt ol" class="primary" />
+
+                        </div>
+                        <br />
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>

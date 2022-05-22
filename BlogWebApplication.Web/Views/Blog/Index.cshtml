@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Blog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<partial name="_Scroll" />
+
+<div class="inner">
+    <br>
+
+    
+    <br />
+    <div class=row>
+        <div class="col-md-1"></div>
+        <div class="col-md-9">
+            <h2 class="h2">Latest blog posts</h2>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <partial name="_BlogCard" model="@item"/>
+                }
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            @await Component.InvokeAsync("Category")
+            <br /><br />
+            @await Component.InvokeAsync("Writer")
+        </div>
+    </div>
+
+
+    <p class="text-center"><a href="~/webSite/blog.html">Read More &nbsp;<i class="fa fa-long-arrow-right"></i></a></p>
+</div>

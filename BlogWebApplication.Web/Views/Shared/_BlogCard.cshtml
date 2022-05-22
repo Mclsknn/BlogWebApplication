@@ -1,0 +1,10 @@
+﻿@model Blog
+
+<div class="col-sm-4 text-center">
+    <img src="~/webSite/@Model.BlogThumbnailImage" class="img-fluid" alt="" />
+
+    <h2 class="m-n"><a href="/Blog/BlogDetail/@Model.BlogID"  data-id="@Model.BlogID">@Model.BlogTitle</a></h2>
+
+    <p> @Model.Writer.WriterName &nbsp;|&nbsp; @Convert.ToDateTime(@Model.BlogCreateDate).ToString("dd-MM-yyyy") </p>
+</div>
+<br />

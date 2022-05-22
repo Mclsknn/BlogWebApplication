@@ -1,3 +1,4 @@
+using BlogWebApplication.DataAccess.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +9,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using BlogWebApplicationEntities.Concrete;
+using BlogWebApplication.DataAccess.Abstract;
+using BlogWebApplication.DataAccess.Concrete.EntityFramework;
+using BlogWebApplication.Business.Concrete;
+using BlogWebApplication.Business.Abstract;
+using BlogWebApplication.Business.MapperProfile;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BlogWebApplication.Web
 {
@@ -23,7 +32,27 @@ namespace BlogWebApplication.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews();
+            services.AddScoped<IWriterRepository, EFWriterRepository>();
+            services.AddScoped<IBlogRepository, EFBlogRepository>();
+            services.AddScoped<ICategoryRepository, EFCategoryRepository>();
+            services.AddScoped<ICommentRepository, EFCommentRepository>();
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IWriterService, WriterService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IBlogService, BlogService>();
+            var connectionString = Configuration.GetConnectionString("db");
+            services.AddDbContext<BlogDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddAutoMapper(typeof(MapProfile));
+            services.AddSession();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options =>
+                    {
+                        options.LoginPath = "/User/Login";
+                        options.AccessDeniedPath = "/User/AccessDenied";
+                    });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +72,8 @@ namespace BlogWebApplication.Web
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
